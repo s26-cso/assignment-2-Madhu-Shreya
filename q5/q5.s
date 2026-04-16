@@ -8,8 +8,8 @@ lchar: .space 1
 rchar: .space 1
 
 .section .text
-.global main
-main:                     
+.global _start
+_start:                     
     addi sp, sp, -16        # create stack space for saving registers
     sd s0, 0(sp)            
     sd s1, 8(sp)            
@@ -88,5 +88,6 @@ exit:
     ld s1, 8(sp)            
     addi sp, sp, 16         # restore stack pointer
 
+    li a7,93                #syscall no. for exit
     li a0,0                 #a0=0
-    ret
+    ecall
