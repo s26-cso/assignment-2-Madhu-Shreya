@@ -64,15 +64,17 @@ main:
     mv a0, t2               #a0=size
     call malloc
     mv s2, a0               #s2=pointer to allocated memory for arr
-
-    mv a0, t2
+    li t1, 4                #t1=4 (t1,t2 are not saved, clobbered by malloc)
+    mul t2, s0, t1          #size = n * 4
+    mv a0, t2               #a0=size
     call malloc
     mv s3, a0               #s3=pointer to allocated memory for result
-
-    mv a0, t2
+ 
+    li t1, 4                #t1=4 (t1,t2 are not saved, clobbered by malloc)
+    mul t2, s0, t1          #size = n * 4
+    mv a0, t2               #a0=size
     call malloc
     mv s4, a0               #s4=pointer to allocated memory for stack
-
     li s6, 0                #i=0
 
     read_loop:
