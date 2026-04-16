@@ -58,8 +58,10 @@ checkpal:
     li a2,1                 #a2=1 read one byte
     ecall
 
-    lb t2,0(lchar)          #t2 = left char
-    lb t3,0(rchar)          #t3 = right char
+    la t4,lchar
+    lb t2,0(t4)             #t2 = left char
+    la t5,rchar
+    lb t3,0(t5)             #t3 = right char
     bne t2,t3,notpal        #if not equal → not palindrome
 
     addi t0,t0,1            #start++
